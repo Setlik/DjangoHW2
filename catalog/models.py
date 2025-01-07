@@ -44,7 +44,7 @@ class Product(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(
-        auto_now=True, verbose_name="Дата последнего изменения"
+        null=True, auto_now=True, verbose_name="Дата последнего изменения"
     )
 
     def __str__(self):
@@ -54,3 +54,13 @@ class Product(models.Model):
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
         ordering = ["name", "category"]
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=15, blank=True, null=True)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.name
