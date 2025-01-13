@@ -16,7 +16,18 @@
 </div>
 
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-4">Контакты</h1>
+    <h1>Контактная информация</h1>
+    <ul>
+        {% for contacts in contact %}
+        <li>
+            <strong>{{ contact.name }}</strong><br>
+            Email: {{ contact.email }}<br>
+            Телефон: {{ contact.phone }}<br>
+            Сообщение:
+            <pre>{{ contact.message }}</pre>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 
 <div class="container">
@@ -27,15 +38,15 @@
                     <table class="table table-striped">
                         <tr>
                             <td class="w-25">Страна</td>
-                            <td>USA</td>
+                            <td>Россия</td>
                         </tr>
                         <tr>
                             <td class="w-25">ИНН</td>
-                            <td>91-1144442</td>
+                            <td>123121541234</td>
                         </tr>
                         <tr>
                             <td class="w-25">Адрес</td>
-                            <td>Redmond,WA,98052-6399</td>
+                            <td>г.Курск 305000</td>
                         </tr>
                     </table>
                 </div>

@@ -1,0 +1,35 @@
+[
+    {
+        "model": "catalog.product",
+        "pk": 1,
+        "fields": {
+            "name": "Ноутбук",
+            "price": 70000,
+            "category": 1,
+            "created_at": "2025-01-07T00:00:00Z",
+            "updated_at": "2025-01-07T00:00:00Z"
+        }
+    },
+    {
+        "model": "catalog.product",
+        "pk": 2,
+        "fields": {
+            "name": "Футболка",
+            "price": 1500,
+            "category": 2,
+            "created_at": "2025-01-07T00:00:00Z",
+            "updated_at": "2025-01-07T00:00:00Z"
+        }
+    },
+    {
+        "model": "catalog.product",
+        "pk": 3,
+        "fields": {
+            "name": "Книга по Python",
+            "price": 800,
+            "category": 3,
+            "created_at": "2025-01-07T00:00:00Z",
+            "updated_at": "2025-01-07T00:00:00Z"
+        }
+    }
+]
