@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% extends 'base.html' %}
+
+{% block title %}Главная страница{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }}</title>
+</head>
+
+<body>
+<div class="row mt-4">
+    <div class="col-md-4 mb-4">
+        <div class="card" style="width: 18rem;">
+            {% block content %}
+            <h1>{{ product.name }}</h1>
+            {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% else %}
+            <p>Изображение недоступно</p>
+            {% endif %}
+            <p><strong>Описание:</strong> {{ product.description }}</p>
+            <p><strong>Цена:</strong> {{ product.price }} рублей</p>
+            <p><strong>Наличие:</strong> {{ product.stock }} шт.</p>
+            <a href="{% url 'home' %}">Назад к списку товаров</a>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+</body>
+</html>
