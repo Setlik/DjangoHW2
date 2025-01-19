@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "catalog",
+    "blog",
 ]
 
 MIDDLEWARE = [
@@ -73,6 +74,14 @@ DATABASES = {
         "PORT": os.getenv("PORT"),
     }
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER =os.getenv("EMAIL")
+EMAIL_HOST_PASSWORD = os.getenv("EMAILPASSWORD")
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

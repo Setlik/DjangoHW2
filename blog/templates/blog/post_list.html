@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Skystore</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+</head>
+<body>
+<h1>Список блогов</h1>
+<a href="{% url 'post_create' %}">Создать новый пост</a>
+<ul>
+    {% for post in posts %}
+        <li>
+            <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>
+        </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'catalog:home' %}">Главная</a>
+</body>
+</html>

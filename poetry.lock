@@ -84,6 +84,17 @@ files = [
 ]
 
 [[package]]
+name = "decorator"
+version = "5.1.1"
+description = "Decorators for Humans"
+optional = false
+python-versions = ">=3.5"
+files = [
+    {file = "decorator-5.1.1-py3-none-any.whl", hash = "sha256:b8c3f85900b9dc423225913c5aace94729fe1fa9763b38939a95226f02d37186"},
+    {file = "decorator-5.1.1.tar.gz", hash = "sha256:637996211036b6385ef91435e4fae22989472f9d571faba8927ba8253acbc330"},
+]
+
+[[package]]
 name = "django"
 version = "5.1.4"
 description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
@@ -230,6 +241,19 @@ files = [
 ]
 
 [[package]]
+name = "self"
+version = "2020.12.3"
+description = "@self decorator makes method return self (jQuery-like chaining)"
+optional = false
+python-versions = "*"
+files = [
+    {file = "self-2020.12.3.tar.gz", hash = "sha256:a0c408138257e0ba6188f2a7ad80cb3f61c3e48c3f85d1f973a160f6f887dc53"},
+]
+
+[package.dependencies]
+decorator = "*"
+
+[[package]]
 name = "sqlparse"
 version = "0.5.3"
 description = "A non-validating SQL parser."
@@ -258,4 +282,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "6595f5c8dde391d09081466c1429a27aa87beca3b870cc6ea331f94e34646939"
+content-hash = "53f7f1ee8ff58cde2779e8ad979c441a63ced73397e7e8afee75ce34d96caf9d"
