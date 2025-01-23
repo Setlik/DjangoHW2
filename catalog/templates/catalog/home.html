@@ -8,7 +8,7 @@
 </head>
 
 
-{% extends 'base.html' %}
+{% extends 'catalog/base.html' %}
 {% load image_path %}
 {% block title %}Главная страница{% endblock %}
 
@@ -23,7 +23,7 @@
     <div class="row text-center">
         <h2>Удобный сервис продаж </h2>
         <div class="row mt-4">
-            {% for product in products %}
+            {% for product in object_list %}2
             <div class="col-md-4 mb-4">
                 <div class="card" style="width: 18rem;">
                     <h5 class="card-title">{{ product.name }}</h5>
@@ -38,7 +38,7 @@
                     {% else %}
                     <p>Изображение недоступно</p>
                     {% endif %}
-                    <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Подробнее</a>
+                    <a href="{% url 'catalog:product_detail' product.pk %}" class="btn btn-primary">Подробнее</a>
                 </div>
             </div>
             {% endfor %}

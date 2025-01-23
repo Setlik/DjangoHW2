@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 
-{% extends 'base.html' %}
+{% extends 'catalog/base.html' %}
 {% load image_path %}
 {% block title %}Главная страница{% endblock %}
 <head>
@@ -24,7 +24,7 @@
             <p><strong>Описание:</strong> {{ product.description }}</p>
             <p><strong>Цена:</strong> {{ product.price }} рублей</p>
             <p><strong>Наличие:</strong> {{ product.stock }} шт.</p>
-            <a href="{% url 'home' %}">Назад к списку товаров</a>
+            <a href="{% url 'catalog:home' %}">Назад к списку товаров</a>
             {% endblock %}
         </div>
     </div>
