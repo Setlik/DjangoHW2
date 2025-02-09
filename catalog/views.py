@@ -12,7 +12,7 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['products'] = Product.objects.all()  # Получаем все товары
+        context['products'] = Product.objects.all()
         return context
 
 
@@ -57,5 +57,5 @@ class ProductEditView(View):
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
-            return redirect('catalog:product_detail', pk=product.pk)  # Перенаправляем на страницу товара после успешного редактирования
+            return redirect('catalog:product_detail', pk=product.pk)
         return render(request, 'catalog/product_edit.html', {'form': form, 'product': product})
