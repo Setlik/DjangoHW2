@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Создание товара</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Создание товара</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Создать товар</button>
+        <a href="{% url 'catalog:home' %}" class="btn btn-primary">Назад</a>
+    </form>
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger mt-3">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
+</div>
+</body>
+</html>

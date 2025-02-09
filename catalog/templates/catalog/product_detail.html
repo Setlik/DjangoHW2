@@ -16,6 +16,7 @@
         <div class="card" style="width: 18rem;">
             {% block content %}
             <h1>{{ product.name }}</h1>
+            <p><strong>Категория:</strong> {{ product.category }} </p>
             {% if product.image %}
             <img src="{{ image_path|media_filter }}" alt="{{ product.name }}">
             {% else %}
@@ -23,8 +24,11 @@
             {% endif %}
             <p><strong>Описание:</strong> {{ product.description }}</p>
             <p><strong>Цена:</strong> {{ product.price }} рублей</p>
-            <p><strong>Наличие:</strong> {{ product.stock }} шт.</p>
-            <a href="{% url 'catalog:home' %}">Назад к списку товаров</a>
+            <p><strong>Количество на складе:</strong> {{ product.stock }}</p>
+            <p><strong>Дата создания:</strong> {{ product.created_at }}</p>
+            <p><strong>Дата последнего изменения:</strong> {{ product.updated_at }}</p>
+            <a href="{% url 'catalog:product_edit' product.pk %}" class="btn btn-primary">Редактировать</a>
+            <a href="{% url 'catalog:home' %}" class="btn btn-primary">Назад к списку товаров</a>
             {% endblock %}
         </div>
     </div>
