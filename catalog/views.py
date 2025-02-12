@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
@@ -16,10 +17,10 @@ class HomeView(TemplateView):
         return context
 
 
-class ContactView(View):
+class ContactView(LoginRequiredMixin, View):
     def get(self, request):
         contacts = Contact.objects.all()
-        return render(request, 'catalog/contacts.html', {'contacts': contacts})  # Передаем контекст в шаблон
+        return render(request, 'catalog/contacts.html', {'contacts': contacts})
 
     def post(self, request):
         name = request.POST.get("name")
@@ -33,7 +34,7 @@ class ProductDetailView(DetailView):
     context_object_name = 'product'
 
 
-class ProductCreateView(View):
+class ProductCreateView(LoginRequiredMixin, View):
     def get(self, request):
         form = ProductForm()
         return render(request, 'catalog/product_create.html', {'form': form})
@@ -46,7 +47,7 @@ class ProductCreateView(View):
         return render(request, 'catalog/product_create.html', {'form': form})
 
 
-class ProductEditView(View):
+class ProductEditView(LoginRequiredMixin, View):
     def get(self, request, pk):
         product = get_object_or_404(Product, pk=pk)
         form = ProductForm(instance=product)
