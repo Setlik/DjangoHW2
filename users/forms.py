@@ -10,15 +10,15 @@ class UserRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['email', 'username', 'password', 'avatar', 'phone_number', 'country']
+        fields = ["email", "username", "password", "avatar", "phone_number", "country"]
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.set_password(self.cleaned_data['password'])
+        user.set_password(self.cleaned_data["password"])
         if commit:
             user.save()
         return user
 
 
 class EmailLoginForm(AuthenticationForm):
-    username = forms.EmailField(label='Email', max_length=254)
+    username = forms.EmailField(label="Email", max_length=254)

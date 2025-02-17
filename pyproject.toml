@@ -13,6 +13,9 @@ black = "^24.10.0"
 self = "^2020.12.3"
 
 
+[tool.poetry.group.lint.dependencies]
+flake8 = "^7.1.2"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
