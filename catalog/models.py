@@ -28,10 +28,8 @@ class Product(models.Model):
         null=True,
         verbose_name="Изображение",
     )
-    category = models.ForeignKey(
-        Category,
-        on_delete=models.CASCADE,
-        related_name="products",
+    category = models.CharField(
+        max_length=255,
         verbose_name="Категория",
     )
     price = models.DecimalField(
