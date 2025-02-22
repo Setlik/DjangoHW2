@@ -88,3 +88,7 @@ class ProductForm(forms.ModelForm):
             validate_image_size(image)
             validate_image_format(image)
         return image
+
+
+class CategorySearchForm(forms.Form):
+    category = forms.CharField(label='Название категории', max_length=100)
