@@ -3,10 +3,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from django.views.generic import DetailView, TemplateView
+from django.views.generic import DetailView, TemplateView, ListView
 
-from catalog.forms import ProductForm
+from catalog.forms import ProductForm, CategorySearchForm
 from catalog.models import Product, Contact
+from catalog.services import get_products_by_category, get_products_from_cache
 
 
 class HomeView(TemplateView):
@@ -16,6 +17,9 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["products"] = Product.objects.all()
         return context
+
+    def get_queryset(self):
+        return get_products_from_cache()
 
 
 class ContactView(LoginRequiredMixin, View):
@@ -96,3 +100,33 @@ class ProductUnpublish(LoginRequiredMixin, View):
         product.save()
         messages.success(request, "Продукт успешно отменён.")
         return redirect("catalog:home")
+
+
+class ProductsByCategoryView(ListView):
+    model = Product
+    template_name = 'catalog/products_by_category.html'
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        category_name = self.kwargs['category_name']
+        return get_products_by_category(category_name)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category_name'] = self.kwargs['category_name']
+        return context
+
+
+class CategorySearchView(View):
+    def get(self, request):
+        """Отображает форму для поиска по категориям."""
+        form = CategorySearchForm()
+        return render(request, 'catalog/enter_category.html', {'form': form})
+
+    def post(self, request):
+        """Обрабатывает форму поиска и перенаправляет на страницу с продуктами в введенной категории."""
+        form = CategorySearchForm(request.POST)
+        if form.is_valid():
+            category_name = form.cleaned_data['category']
+            return redirect('catalog:products_by_category', category_name=category_name)
+        return render(request, 'catalog/enter_category.html', {'form': form})
