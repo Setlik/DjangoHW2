@@ -7,8 +7,8 @@ from .models import Post
 
 class PostListView(generic.ListView):
     model = Post
-    template_name = 'blog/post_list.html'
-    context_object_name = 'posts'
+    template_name = "blog/post_list.html"
+    context_object_name = "posts"
 
     def get_queryset(self):
         return Post.objects.filter(is_published=True)
@@ -16,8 +16,8 @@ class PostListView(generic.ListView):
 
 class PostDetailView(generic.DetailView):
     model = Post
-    template_name = 'blog/post_detail.html'
-    context_object_name = 'post'
+    template_name = "blog/post_detail.html"
+    context_object_name = "post"
 
     def get_object(self, queryset=None):
         post = super().get_object(queryset)
@@ -31,8 +31,10 @@ class PostDetailView(generic.DetailView):
 
     def send_email_notification(self, post):
         subject = f"Поздравляем! Статья '{post.title}' достигла 100 просмотров!"
-        message = f"Поздравляем! Ваша статья '{post.title}' сейчас имеет 100 просмотров."
-        recipient_list = ['USER@gmail.com']
+        message = (
+            f"Поздравляем! Ваша статья '{post.title}' сейчас имеет 100 просмотров."
+        )
+        recipient_list = ["USER@gmail.com"]
 
         send_mail(
             subject,
@@ -45,21 +47,21 @@ class PostDetailView(generic.DetailView):
 
 class PostCreateView(generic.CreateView):
     model = Post
-    template_name = 'blog/post_form.html'
-    fields = ['title', 'content', 'preview_image', 'is_published']
-    success_url = reverse_lazy('post_list')
+    template_name = "blog/post_form.html"
+    fields = ["title", "content", "preview_image", "is_published"]
+    success_url = reverse_lazy("post_list")
 
 
 class PostUpdateView(generic.UpdateView):
     model = Post
-    template_name = 'blog/post_form.html'
-    fields = ['title', 'content', 'preview_image', 'is_published']
+    template_name = "blog/post_form.html"
+    fields = ["title", "content", "preview_image", "is_published"]
 
     def get_success_url(self):
-        return reverse_lazy('post_detail', kwargs={'pk': self.object.pk})
+        return reverse_lazy("post_detail", kwargs={"pk": self.object.pk})
 
 
 class PostDeleteView(generic.DeleteView):
     model = Post
-    template_name = 'blog/post_confirm_delete.html'
-    success_url = reverse_lazy('post_list')
+    template_name = "blog/post_confirm_delete.html"
+    success_url = reverse_lazy("post_list")

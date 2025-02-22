@@ -1,16 +1,17 @@
 from django.core.management.base import BaseCommand
 from catalog.models import Product, Category
 
+
 class Command(BaseCommand):
-    help = 'Добавляет продукты в базу данных'
+    help = "Добавляет продукты в базу данных"
 
     def handle(self, *args, **kwargs):
         Product.objects.all().delete()
         Category.objects.all().delete()
 
-        electronics = Category.objects.create(name='Электроника')
-        clothing = Category.objects.create(name='Одежда')
-        books = Category.objects.create(name='Книги')
+        electronics = Category.objects.create(name="Электроника")
+        clothing = Category.objects.create(name="Одежда")
+        books = Category.objects.create(name="Книги")
 
         products = [
             {"name": "Ноутбук", "price": 70000, "category": electronics},
@@ -22,9 +23,9 @@ class Command(BaseCommand):
 
         for product in products:
             Product.objects.create(
-                name=product['name'],
-                price=product['price'],
-                category=product['category'],
+                name=product["name"],
+                price=product["price"],
+                category=product["category"],
             )
 
-        self.stdout.write(self.style.SUCCESS('Продукты успешно добавлены'))
+        self.stdout.write(self.style.SUCCESS("Продукты успешно добавлены"))
