@@ -21,16 +21,18 @@
     <div class="row text-center">
         <h2>Удобный сервис продаж</h2>
         <a href="{% url 'catalog:product_create' %}" class="btn btn-primary mt-3">Создать новый товар</a>
+        <a href="{% url 'catalog:enter_category' %}" class="btn btn-primary mt-3">Найти по категории</a>
         <div class="row mt-4">
             {% if products %}
                 {% for product in products %}
                 <div class="col-md-4 mb-4">
                     <div class="card" style="width: 18rem;">
                         <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text">Описание: {{ product.description|truncatechars:100 }}<br>
-                            Цена: {{ product.price }} рублей<br>
-                            Наличие: {{ product.stock }} шт.
-                        </p>
+                        <p class="card-text"> Описание: {{ product.description|truncatechars:100 }}</p>
+                        <p class="card-text"> Цена: {{ product.price }} рублей</p>
+                        <p class="card-text"> Наличие: {{ product.stock }} шт.</p>
+                        <p class="card-text"> Категория: {{ product.category }}.</p>
+
                         {% if product.image %}
                             <p><img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}"></p>
                         {% else %}

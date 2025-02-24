@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Продукты в категории {{ category_name }}</title>
+</head>
+<body>
+    <h1>Продукты в категории: {{ category_name }}</h1>
+    <ul>
+        {% for product in products %}
+            <li>
+                <h2>{{ product.name }}</h2>
+                <p>{{ product.description }}</p>
+                <p>Цена: {{ product.price }} ₽</p>
+                <p>На складе: {{ product.stock }}</p>
+            </li>
+        {% empty %}
+            <li>В этой категории нет продуктов.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
